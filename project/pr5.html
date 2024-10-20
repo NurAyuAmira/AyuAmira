@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bakery House System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="shortcut icon" type="image/png" href="img/shicon.png"/>
+  <style>
+   body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    .project-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .btn-custom {
+      margin-top: 15px;
+    }
+
+    /* Slider styling */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 10px;
+      background-color: #000;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 1s ease-in-out;
+    }
+
+    .slide {
+      flex-shrink: 0;
+      width: 100%;
+      height: auto;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.5s ease;
+    }
+
+    /* Zoom-in effect on hover */
+    .slide img:hover {
+      transform: scale(1.5);
+    }
+
+    /* Navigation arrows */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 768px) {
+      .slider-container {
+        max-width: 100%;
+      }
+
+      .slide {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2 class="text-center mb-5">Project Details</h2>
+
+  <div class="project-container">
+    <h3>Project Name: Bakery House System</h3>
+    <p><strong>Description:</strong> This project is a web-based bakery ordering system that allows customers to browse bakery products, place orders, and manage their accounts online. The system also provides an admin interface to manage products, orders, and customer details.</p>
+
+    <p><strong>Programming Languages/Tools:</strong> HTML, CSS, JavaScript, PHP, MySQL</p>
+
+    <p><strong>Features:</strong></p>
+    <ul>
+      <li><strong>Customer Features:</strong>
+        <ul>
+          <li>Register and login</li>
+          <li>Manage profile</li>
+          <li>View products and categories</li>
+          <li>Search for products</li>
+          <li>Manage cart (add, remove, update items)</li>
+          <li>Payment processing</li>
+          <li>Order tracking and status updates</li>
+          <li>View order history and receipts</li>
+          <li>Message system for customer feedback</li>
+        </ul>
+      </li>
+      <li><strong>Admin Features:</strong>
+        <ul>
+          <li>Manage products (add, edit, delete)</li>
+          <li>View customer details and order history</li>
+          <li>Update order statuses</li>
+          <li>Manage posts (announcements, promotions)</li>
+          <li>Reply to customer messages</li>
+        </ul>
+      </li>
+      <li><strong>Security Features:</strong> Authentication and authorization, password hashing, input validation, session management</li>
+    </ul>
+
+    <!-- Image Slider inserted here -->
+    <div class="slider-container">
+      <!-- Navigation arrows -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <a href="https://github.com/NurAyuAmira/Bakery_House_PHP" class="btn btn-primary btn-custom" target="_blank">
+      <i class="fab fa-github"></i> View on GitHub
+    </a>
+
+    <a href="https://drive.google.com/file/d/1PpcxI_yr0HEXmoyY3HGfuBBLF8lKkNW5/view?usp=sharing" class="btn btn-secondary btn-custom" target="_blank">
+      <i class="fas fa-file-alt"></i> View Project Report
+    </a>
+  </div>
+
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  
+  function showSlide(index) {
+    currentSlide = (index + totalSlides) % totalSlides;
+    const slider = document.querySelector('.slider');
+    const slideWidth = document.querySelector('.slider-container').offsetWidth;
+    slider.style.transform = `translateX(${-currentSlide * slideWidth}px)`;
+  }
+  
+  function plusSlides(n) {
+    showSlide(currentSlide + n);
+  }
+  
+  window.addEventListener('resize', () => {
+    showSlide(currentSlide);
+  });
+  
+  let slideInterval = setInterval(() => {
+    plusSlides(1);
+  }, 3000);
+  
+  const sliderContainer = document.querySelector('.slider-container');
+  sliderContainer.addEventListener('mouseover', () => clearInterval(slideInterval));
+  sliderContainer.addEventListener('mouseout', () => {
+    slideInterval = setInterval(() => {
+      plusSlides(1);
+    }, 3000);
+  });
+</script>
+
+</body>
+</html>

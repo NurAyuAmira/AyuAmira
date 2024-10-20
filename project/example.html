@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Details</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <link rel="shortcut icon" type="image/png" href="images/shicon.png"/>
+  <style>
+   body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.project-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.btn-custom {
+  margin-top: 15px;
+}
+
+/* Slider styling */
+.slider-container {
+  position: relative;
+  width: 100%; /* Make the container responsive */
+  max-width: 500px; /* Limit maximum width */
+  height: auto; /* Height should be auto to maintain aspect ratio */
+  margin: 20px auto; /* Center horizontally */
+  overflow: hidden; /* Hide overflow */
+  border-radius: 10px;
+  background-color: #000; /* Optional background */
+}
+
+.slider {
+  display: flex;
+  transition: transform 1s ease-in-out; /* Smooth sliding */
+}
+
+.slide {
+  flex-shrink: 0;
+  width: 100%; /* Ensure each slide takes the full width */
+  height: auto; /* Adjust height based on the width */
+}
+
+.slide img {
+  width: 100%; /* Ensure the image fills the slide */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Cover the container without distortion */
+  border-radius: 10px;
+  transition: transform 0.5s ease; /* Smooth zoom-in */
+}
+
+/* Zoom-in effect on hover */
+.slide img:hover {
+  transform: scale(1.5); /* Zoom in effect */
+}
+
+/* Navigation arrows */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .slider-container {
+    max-width: 100%; /* Full width on mobile */
+  }
+
+  .slide {
+    width: 100%; /* Each slide takes full width on smaller screens */
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2 class="text-center mb-5">Project Details</h2>
+
+  <div class="project-container">
+    <h3>Project Name: Bakery House</h3>
+    <p><strong>Description:</strong> Bakery House is a web application that allows users to browse bakery items, place orders, and manage their accounts.</p>
+
+    <p><strong>Programming Languages/Tools:</strong> PHP, HTML, CSS, JavaScript, MySQL</p>
+
+    <p><strong>Features:</strong></p>
+    <ul>
+      <li>User registration and login</li>
+      <li>Responsive design for mobile and desktop</li>
+      <li>Shopping cart and order management</li>
+      <li>Admin dashboard for product management</li>
+    </ul>
+
+    <!-- Image Slider inserted here -->
+    <div class="slider-container">
+      <div class="slider">
+        <div class="slide">
+          <img src="images/project/pr1.jpg" alt="UI Slide 1">
+        </div>
+        <div class="slide">
+          <img src="images/project/pr2.png" alt="UI Slide 2">
+        </div>
+        <div class="slide">
+          <img src="images/project/project1.png" alt="UI Slide 3">
+        </div>
+        <div class="slide">
+          <img src="images/project/project6.png" alt="UI Slide 4">
+        </div>
+      </div>
+      <!-- Navigation arrows -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <a href="https://github.com/YourGithubLink" class="btn btn-primary btn-custom" target="_blank">
+      <i class="fab fa-github"></i> View on GitHub
+    </a>
+
+    <a href="https://drive.google.com/YourReportLink" class="btn btn-secondary btn-custom" target="_blank">
+      <i class="fas fa-file-alt"></i> View Project Report
+    </a>
+  </div>
+
+</div>
+
+<script>
+  // Initialize the currentSlide index
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  
+  // Function to show the current slide
+  function showSlide(index) {
+    currentSlide = (index + totalSlides) % totalSlides; // Ensure the slide number wraps around
+    const slider = document.querySelector('.slider');
+    
+    // Dynamically get the width of the slider container
+    const slideWidth = document.querySelector('.slider-container').offsetWidth;
+    
+    // Translate the slider based on the dynamic width of the container
+    slider.style.transform = `translateX(${-currentSlide * slideWidth}px)`; // Adjust for dynamic width
+  }
+  
+  // Next/Previous control
+  function plusSlides(n) {
+    showSlide(currentSlide + n);
+  }
+  
+  // Handle window resizing and recalculate the slide position
+  window.addEventListener('resize', () => {
+    showSlide(currentSlide); // Recalculate position after resizing
+  });
+  
+  // Automatically slide to the next slide every 3 seconds
+  let slideInterval = setInterval(() => {
+    plusSlides(1); // Move to the next slide
+  }, 3000); // Change the interval duration (3000 ms = 3 seconds)
+  
+  // Optional: Stop the automatic sliding on hover (if desired)
+  const sliderContainer = document.querySelector('.slider-container');
+  sliderContainer.addEventListener('mouseover', () => clearInterval(slideInterval)); // Stop on hover
+  sliderContainer.addEventListener('mouseout', () => {
+    slideInterval = setInterval(() => {
+      plusSlides(1);
+    }, 3000); // Resume sliding when hover ends
+  });
+  </script>
+  
+  
+
+</body>
+</html>

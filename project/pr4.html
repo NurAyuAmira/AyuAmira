@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSA Cryptosystem</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="shortcut icon" type="image/png" href="img/shicon.png"/>
+  <style>
+   body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    .project-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .btn-custom {
+      margin-top: 15px;
+    }
+
+    /* Slider styling */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 10px;
+      background-color: #000;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 1s ease-in-out;
+    }
+
+    .slide {
+      flex-shrink: 0;
+      width: 100%;
+      height: auto;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.5s ease;
+    }
+
+    /* Zoom-in effect on hover */
+    .slide img:hover {
+      transform: scale(1.5);
+    }
+
+    /* Navigation arrows */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 768px) {
+      .slider-container {
+        max-width: 100%;
+      }
+
+      .slide {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2 class="text-center mb-5">Project Details</h2>
+
+  <div class="project-container">
+    <h3>Project Name: RSA Cryptosystem</h3>
+    <p><strong>Description:</strong> This project provides an in-depth analysis of the RSA Cryptosystem, focusing on its implementation, encryption, and decryption processes using large prime numbers. It also explores the mathematical foundations of RSA, such as modular arithmetic and the use of public and private keys for secure communication.</p>
+
+    <p><strong>Programming Languages/Tools:</strong> Python</p>
+
+    <p><strong>Features:</strong></p>
+    <ul>
+      <li><strong>Mathematical Foundations:</strong> Detailed exploration of modular arithmetic, prime numbers, Euler’s Theorem, and the Extended Euclidean Algorithm, which are integral to RSA.</li>
+      <li><strong>Key Generation:</strong> Implementation of RSA key generation using large prime numbers and calculating both public and private keys based on mathematical operations.</li>
+      <li><strong>Encryption & Decryption:</strong> Practical coding of RSA encryption and decryption processes with modular exponentiation.</li>
+      <li><strong>Comparative Analysis:</strong> Comparative analysis with symmetric encryption techniques such as Simplified AES (S-AES), highlighting RSA’s advantages in public-key cryptography.</li>
+      <li><strong>Toy Simulations:</strong> Practical toy simulations to demonstrate RSA's functionality with Python code, showcasing key generation, encryption, and decryption with example messages.</li>
+      <li><strong>Modern Cryptography Applications:</strong> Discussion of RSA’s applications in securing digital communications, including online banking and secure messaging.</li>
+    </ul>
+
+    <!-- Image Slider inserted here -->
+    <div class="slider-container">
+     
+      <!-- Navigation arrows -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <a href="https://github.com/NurAyuAmira/Cryptography_and_DataSecurity" class="btn btn-primary btn-custom" target="_blank">
+      <i class="fab fa-github"></i> View on GitHub
+    </a>
+
+    <a href="https://drive.google.com/file/d/1RkwvMxdmy1ZjN7ioaRgWDmZgVdGp8bnf/view?usp=sharing" class="btn btn-secondary btn-custom" target="_blank">
+      <i class="fas fa-file-alt"></i> View Project Report
+    </a>
+  </div>
+
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  
+  function showSlide(index) {
+    currentSlide = (index + totalSlides) % totalSlides;
+    const slider = document.querySelector('.slider');
+    const slideWidth = document.querySelector('.slider-container').offsetWidth;
+    slider.style.transform = `translateX(${-currentSlide * slideWidth}px)`;
+  }
+  
+  function plusSlides(n) {
+    showSlide(currentSlide + n);
+  }
+  
+  window.addEventListener('resize', () => {
+    showSlide(currentSlide);
+  });
+  
+  let slideInterval = setInterval(() => {
+    plusSlides(1);
+  }, 3000);
+  
+  const sliderContainer = document.querySelector('.slider-container');
+  sliderContainer.addEventListener('mouseover', () => clearInterval(slideInterval));
+  sliderContainer.addEventListener('mouseout', () => {
+    slideInterval = setInterval(() => {
+      plusSlides(1);
+    }, 3000);
+  });
+</script>
+
+</body>
+</html>
