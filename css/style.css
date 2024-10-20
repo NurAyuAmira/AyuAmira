@@ -487,13 +487,33 @@ h3.my-profession
     font-weight: 400;
     line-height: 40px;
 }
-.about .about-content .education,
-.about .about-content .experience
-{
-    flex: 0 0 50%;
-    max-width: 50%;
-    margin-top: 30px;
+/* Ensure the education and experience boxes remain the same size and add scroll */
+.about .about-content .education, 
+.about .about-content .experience {
+    flex: 0 0 50%;  /* Ensure both boxes are the same width */
+    max-width: 50%; /* Ensure both boxes are the same width */
+    margin-top: 30px; /* Keep the existing margin */
+    max-height: 400px;  /* Set a fixed height, adjust this based on your preference */
+    overflow-y: auto;   /* Enable vertical scrolling when content exceeds the height */
 }
+
+/* Optional: Customize scrollbar for modern browsers */
+.about .about-content .education::-webkit-scrollbar, 
+.about .about-content .experience::-webkit-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+}
+
+.about .about-content .education::-webkit-scrollbar-thumb, 
+.about .about-content .experience::-webkit-scrollbar-thumb {
+    background-color: #888; /* Customize the scrollbar thumb color */
+    border-radius: 4px;
+}
+
+.about .about-content .education::-webkit-scrollbar-track, 
+.about .about-content .experience::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Customize the scrollbar track color */
+}
+
 .about .about-content h3.title 
 {
     font-size: 24px;
@@ -571,6 +591,42 @@ h3.my-profession
     text-align: justify;
     color: var(--text-black-700);
 }
+
+.about .about-content .timeline .timeline-title-link {
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: capitalize;
+    color: var(--skin-color); /* Set the color to make it stand out */
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    position: relative;
+}
+
+
+
+/* Optional: Add a subtle underline on hover for better visual feedback */
+.about .about-content .timeline .timeline-title-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--skin-color);
+    bottom: -3px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.about .about-content .timeline .timeline-title-link:hover::after {
+    width: 100%; /* On hover, expand the underline */
+}
+
+
+
+.about .about-content .timeline .timeline-text li {
+    list-style: disc; /* Add the bullet points (default is disc) */
+    margin-bottom: 10px; /* Add spacing between the list items */
+}
+
+
 /* service */
 .service .container
 {
@@ -669,6 +725,45 @@ h3.my-profession
     width: 100%;
     display: block;
 }
+
+/* Ensure the portfolio item container is positioned relatively */
+.portfolio-item-inner {
+    position: relative;
+    overflow: hidden; /* Hide any overflow for the hover effect */
+}
+
+/* Set the portfolio image to transition smoothly for the hover effect */
+.portfolio-item-inner .portfolio-img img {
+    transition: transform 0.5s ease; /* Smooth zoom on hover */
+}
+
+/* The caption text that will appear on hover */
+.portfolio-item-inner .portfolio-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(100%); /* Move it out of view initially */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth transition */
+}
+
+/* Zoom the image and show the caption on hover */
+.portfolio-item-inner:hover .portfolio-img img {
+    transform: scale(1.1); /* Zoom in the image */
+}
+
+.portfolio-item-inner:hover .portfolio-caption {
+    opacity: 1; /* Show the caption */
+    transform: translateY(0); /* Move the caption up into view */
+}
+
+
 /* contact */
 .contact-title
 {
