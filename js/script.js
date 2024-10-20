@@ -1,10 +1,10 @@
 /* ============================== typing animation ============================ */
-var typed = new Typed(".typing",{
-    strings:["", "Cybersecurity Intern at AMD", "YTM Future Leader Scholar", "Cybersecurity Student at MMU"],
-    typeSpeed:100,
-    BackSpeed:60,
-    loop:true
-})
+var typed = new Typed(".typing", {
+    strings: ["", "Cybersecurity Intern at AMD", "YTM Future Leader Scholar", "Cybersecurity Student at MMU"],
+    typeSpeed: 100,
+    backSpeed: 60,
+    loop: true
+});
 /* ============================== Aside ============================ */
 const nav = document.querySelector(".nav"),
       navList = nav.querySelectorAll("li"),
